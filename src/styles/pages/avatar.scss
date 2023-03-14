@@ -1,0 +1,20 @@
+
+.avatar {
+    width: 300px;
+    height: 500px;
+    margin: auto;
+    border: 1px solid green;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    margin-top: 50px;
+
+    .img-frame {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        border: 1px solid red;
+    }
+}
