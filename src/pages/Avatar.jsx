@@ -8,7 +8,7 @@ const Avatar = () => {
 
 
   const [selectedImg, setSelectedImg] = useState(null)
-  const [profileImg, setProfileImg] = useState('')
+  const [profileImg, setProfileImg] = useState(null)
   const [flag, setFlag] = useState(false)
 
   const convertBase64 = (file) => {
@@ -32,7 +32,7 @@ const Avatar = () => {
   .then(res=>convertBase64(res))
   .then(res=>{
    return ( axios.post(
-      'http://localhost:7000/create-data',
+      'http://localhost:7000/post-avatar',
        
       {
       
@@ -58,8 +58,11 @@ const Avatar = () => {
   }
 
 useEffect(()=>{
-  axios('http://localhost:7000')
+ 
+    axios('http://localhost:7000/get-avatar')
     .then(res=>setProfileImg(res.data.data))
+  
+
 },[flag])
 
 
@@ -73,7 +76,7 @@ useEffect(()=>{
         <input id='select'  type="file" onChange={handleFileRead} />
           <i className="fa-regular fa-pen-to-square" ></i>
         </label>
-          <img src={profileImg == ''?imgSrc:profileImg} alt="" />
+          <img src={profileImg == null?imgSrc:profileImg} alt="" />
           </div>
           
       </div>

@@ -15,22 +15,30 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 const db = []
 
-app.get("/", (req, res) => {
+
+app.get("/get-avatar", (req, res) => {
 
     res.send(
       db[0]
     )
   
 })
-app.post('/create-data', (req, res)=>{
+app.post('/post-avatar', (req, res)=>{
 res.send(req.body)
 db.splice(0,db.length-1)
 db.unshift(req.body)
- console.log(db)
   
   
 
  
+})
+
+
+app.get("/get-products", (req,res)=>{
+  fetch('https://fakestoreapi.com/products')
+            .then(r=>r.json())
+           
+            .then(r=>res.send(r))
 })
 
 
