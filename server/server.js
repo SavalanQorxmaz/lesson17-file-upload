@@ -15,16 +15,18 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 const db = []
 
-// app.get("/", (req, res) => {
+app.get("/", (req, res) => {
 
-//     res.send(
-//       {data:db}
-//     )
+    res.send(
+      db[0]
+    )
   
-// })
+})
 app.post('/create-data', (req, res)=>{
 res.send(req.body)
-//  console.log(req.body)
+db.splice(0,db.length-1)
+db.unshift(req.body)
+ console.log(db)
   
   
 

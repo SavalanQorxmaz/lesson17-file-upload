@@ -41,16 +41,15 @@ const Avatar = () => {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Access-Control-Allow-Origin': '*'
     },
-  body: res,
+  data:res,
    
       })
   
   )
  
   })
-  .then(res=>res.data.body)
   .then(res=>{
-    setProfileImg(res)
+    setFlag(!flag)
   })
    
    
@@ -58,7 +57,10 @@ const Avatar = () => {
     
   }
 
-
+useEffect(()=>{
+  axios('http://localhost:7000')
+    .then(res=>setProfileImg(res.data.data))
+},[flag])
 
 
   return (
