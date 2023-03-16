@@ -2,11 +2,13 @@
 
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Modal } from '../components/Modal'
 
 const Products = () => {
 
   const [data, setData] = useState([])
   const [flag, setFlag] = useState(false)
+  const [selectedRow, setSelectedRow] = useState({})
 
   useEffect(()=>{
     axios('http://localhost:7000/get-products',
@@ -30,35 +32,18 @@ const Products = () => {
       console.log(e.target)
    
   }
-  const cardClick = ()=>{
-    // e.preventDefault()
-    // e.stopPropagation()
-    // e.stopImmediatePropagation()
-    console.log('salam')
-  }
-const modalClick = (e)=>{
-  if(e.target ==e.currentTarget){
-    e.currentTarget.style.display = 'none'
-  }
+
+
  
 
-}
+
 
   const iconClick = (e)=>{
     e.stopPropagation()
     // console.log(e.currentTarget.parentNode)
-    const x = data.filter((item)=>item.id==e.currentTarget.parentNode.id)[0]
-    console.log(x)
+    setSelectedRow(data.filter((item)=>item.id==e.currentTarget.parentNode.id)[0])
     document.querySelector('.details').style.display = 'flex'
-    document.querySelector('.details').innerHTML =
     
-      `<div class='modal' onClick={${{cardClick}} }>
-      <img src="${x.image}" alt="" />
-      <div>${x.id}</div>
-      <div>${x.category}</div>
-      <div>${x.title}</div>
-      <div>${x.description}</div>
-      </div>`
    
     
   }
@@ -89,9 +74,7 @@ const modalClick = (e)=>{
   return (
     <div className='products'>  
   <div className='container'>
-    <div className='details' onClick={modalClick}>
-  
-    </div>
+    <Modal selectedRow = {selectedRow}/>
   <table>
     <thead>
       <tr>
