@@ -1,15 +1,16 @@
 
 .header-back {
-    height: 50px;
+    height: 5vh;
 }
 
 .header {
     position: fixed;
     width: 100%;
+    z-index: 11;
     background-color: black;
 
     .navbar {
-        height: 50px;
+        height: 5vh;
         display: flex;
         align-items: center;
         // justify-content: center;
